@@ -11,7 +11,6 @@ int main(int argc, char *argv[]){
     int count = 0;
     unsigned long int n = 0;
 
-    //create window and get image
     create_window();
 
     while (1){
