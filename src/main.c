@@ -27,9 +27,6 @@ int main(int argc, char *argv[]){
 
             step = (j*8)+i;
 
-            set_positive_bit_ULI(&n, step);
-            count++;
-
             if(is_valid(n, step) == 0){
                 MLV_draw_text(RES_Y+10, 10, "et merde", MLV_COLOR_RED);
             }
@@ -41,9 +38,12 @@ int main(int argc, char *argv[]){
                     MLV_draw_text(RES_Y+10, 10, "et c'est perdu", MLV_COLOR_RED);
                 }
                 else{
-                    MLV_draw_text(RES_Y+10, 10, "et c'est pas fini", MLV_COLOR_BLACK);
+                    MLV_draw_text(RES_Y+10, 10, "et c'est pas fini", MLV_COLOR_GREEN);
                 }
             }
+
+            set_positive_bit_ULI(&n, step);
+            count++;
         }
     }
     

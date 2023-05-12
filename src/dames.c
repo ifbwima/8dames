@@ -65,40 +65,41 @@ int verif_lig(unsigned long int n, int step){
 }
 
 int verif_dia(unsigned long int n, int step){
-    for(int i = step + 9; i < 64; i+=9){
-        if(bit_value_ULI(n, i) == 1){
-            return 1;
-        }
-        if(i%8 == 0 || i > 63){
-            break;
-        }
-    }
-    for(int i = step - 9; i >= 0; i-=9){
-        if(bit_value_ULI(n, i) == 1){
-            return 1;
-        }
-        if(i%8 == 7 || i < 0){
-            break;
-        }
-    }
-    for(int i = step + 7; i < 64; i+=7){
-        if(bit_value_ULI(n, i) == 1){
-            return 1;
-        }
-        if(i%8 == 7 || i > 63){
-            break;
-        }
-    }
-    for(int i = step - 7; i >= 0; i-=7){
-        if(bit_value_ULI(n, i) == 1){
-            return 1;
-        }
-        if(i%8 == 0 || i < 0){
-            break;
-        }
-    }
-}
+    int haut_gauche = step-9;
+    int haut_droit = step-7;
+    int bas_gauche = step+7;
+    int bas_droit = step+9;
 
+    while((haut_gauche%8!=0 || haut_gauche == 0) && haut_gauche>=0){
+        if(bit_value_ULI(n, haut_gauche) == 1){
+            return 1;
+        }
+        haut_gauche-=9;
+    }
+
+    while(haut_droit%8!=0 && haut_droit>=0){
+        if(bit_value_ULI(n, haut_droit) == 1){
+            return 1;
+        }
+        haut_droit-=7;
+    }
+
+    while(bas_gauche%9!=7 && bas_gauche<64){
+        if(bit_value_ULI(n, bas_gauche) == 1){
+            return 1;
+        }
+        bas_gauche+=7;
+    }
+
+    while(bas_droit%9!=7 && bas_droit<64){
+        if(bit_value_ULI(n, bas_droit) == 1){
+            return 1;
+        }
+        bas_droit+=9;
+    }
+
+    return 0;
+}
 
 int is_valid(unsigned long int n, int step){
     if(bit_value_ULI(n, step) == 1){
